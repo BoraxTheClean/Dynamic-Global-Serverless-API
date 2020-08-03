@@ -1,0 +1,27 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: >
+  Deploys an api behind cloudfront that dumps headers.
+
+Resources:
+    ReturnHeadersFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+          FunctionName: list-instances-api
+          CodeUri: dist/
+          Handler: handler.handler
+          Runtime: python3.8
+          Timeout: 300
+          Tracing: Active
+          AutoPublishAlias: live
+          DeploymentPreference:
+              #Change to Canary10Percent5Minutes after developemnt
+              Type: AllAtOnce
+          MemorySize: 128
+          Events:
+            APIGateway:
+              Type: Api
+              Properties:
+                Path: /
+                Method: GET
