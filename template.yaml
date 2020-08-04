@@ -25,3 +25,19 @@ Resources:
               Properties:
                 Path: /
                 Method: GET
+
+      Distro:
+        Type: AWS::CloudFront::Distribution
+        Properties:
+          DistributionConfig:
+            DefaultCacheBehavior: DefaultCacheBehavior     # required
+            Enabled: True
+            HttpVersion: http2
+            Origins:                # required, list of Origin
+              -
+                CustomOriginConfig:
+                  CustomOriginConfig
+                DomainName: 554jrr4221.execute-api.us-east-1.amazonaws.com
+                Id: 1
+                OriginPath: /Prod
+            PriceClass: PriceClass_100
