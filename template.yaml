@@ -1,5 +1,6 @@
 ---
 AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
 
 Description: >
   Deploys an api behind cloudfront that dumps headers.
@@ -8,11 +9,11 @@ Resources:
     ReturnHeadersFunction:
       Type: AWS::Serverless::Function
       Properties:
-          FunctionName: list-instances-api
+          FunctionName: list-headers
           CodeUri: dist/
           Handler: handler.handler
           Runtime: python3.8
-          Timeout: 300
+          Timeout: 29
           Tracing: Active
           AutoPublishAlias: live
           DeploymentPreference:
