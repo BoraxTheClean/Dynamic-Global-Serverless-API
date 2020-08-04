@@ -42,7 +42,11 @@ Resources:
           Origins:                # required, list of Origin
             -
               CustomOriginConfig:
-                CustomOriginConfig
+                HTTPSPort: 443
+                OriginKeepaliveTimeout: 1
+                OriginProtocolPolicy: https-only
+                OriginSSLProtocols:
+                  - TLSv1.2
               DomainName: 554jrr4221.execute-api.us-east-1.amazonaws.com
               Id: 1
               OriginPath: /Prod
