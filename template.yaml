@@ -14,7 +14,6 @@ Resources:
           Handler: handler.handler
           Runtime: python3.8
           Timeout: 29
-          Tracing: Active
           AutoPublishAlias: live
           DeploymentPreference:
               #Change to Canary10Percent5Minutes after developemnt
@@ -26,17 +25,29 @@ Resources:
               Properties:
                 Path: /
                 Method: GET
+    Cert:
+      Type: AWS::CertificateManager::Certificate
+      Properties:
+        DomainName: headers.owen.dev
+        ValidationMethod: DNS
 
     Distro:
       Type: AWS::CloudFront::Distribution
       Properties:
         DistributionConfig:
+          Aliases:
+            - headers.owen.dev
+          ViewerCertificate:
+            AcmCertificateArn: !Ref Cert
+            MinimumProtocolVersion: TLSv1.2_2018 
+            SslSupportMethod: sni-only
           DefaultCacheBehavior:
             AllowedMethods:
               - GET
               - HEAD
             TargetOriginId: 1
             ViewerProtocolPolicy: redirect-to-https
+            CachePolicyId: ea86561a-5a7b-4330-8267-35f32646fd5b
           Enabled: True
           HttpVersion: http2
           Origins:                # required, list of Origin
