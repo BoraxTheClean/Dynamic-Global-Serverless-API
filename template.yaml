@@ -47,10 +47,25 @@ Resources:
               - HEAD
             TargetOriginId: 1
             ViewerProtocolPolicy: redirect-to-https
-            CachePolicyId: ea86561a-5a7b-4330-8267-35f32646fd5b
+            MinTTL: 0
+            MaxTTL: 86400
+            DefaultTTL: 86400
+            ForwardedValues:
+              Headers:
+                - CloudFront-Viewer-City
+                - CloudFront-Viewer-Country
+                - CloudFront-Viewer-Country-Name
+                - CloudFront-Viewer-Country-Region
+                - CloudFront-Viewer-Country-Region-Name
+                - CloudFront-Viewer-Latitude
+                - CloudFront-Viewer-Longitude
+                - CloudFront-Viewer-Metro-Code
+                - CloudFront-Viewer-Postal-Code
+                - CloudFront-Viewer-Time-Zone
+              QueryString: False
           Enabled: True
           HttpVersion: http2
-          Origins:                # required, list of Origin
+          Origins:                
             -
               CustomOriginConfig:
                 HTTPSPort: 443
