@@ -25,6 +25,13 @@ Resources:
               Properties:
                 Path: /
                 Method: GET
+                RestApiId: !Ref API
+    API:
+      Type: AWS::Serverless::Api
+      Properties:
+        Cors: "'headers.owen.dev'"
+        StageName: Prod
+
     Cert:
       Type: AWS::CertificateManager::Certificate
       Properties:
@@ -39,7 +46,7 @@ Resources:
             - headers.owen.dev
           ViewerCertificate:
             AcmCertificateArn: !Ref Cert
-            MinimumProtocolVersion: TLSv1.2_2018 
+            MinimumProtocolVersion: TLSv1.2_2018
             SslSupportMethod: sni-only
           DefaultCacheBehavior:
             AllowedMethods:
@@ -65,7 +72,7 @@ Resources:
               QueryString: False
           Enabled: True
           HttpVersion: http2
-          Origins:                
+          Origins:
             -
               CustomOriginConfig:
                 HTTPSPort: 443
@@ -73,7 +80,10 @@ Resources:
                 OriginProtocolPolicy: https-only
                 OriginSSLProtocols:
                   - TLSv1.2
-              DomainName: 554jrr4221.execute-api.us-east-1.amazonaws.com
+              DomainName: !Sub
+                - '${APIResourceID}.execute-api.${AWS::Region}.amazonaws.com'
+                -
+                  APIResourceID: !GetAtt API.RootResourceId
               Id: 1
               OriginPath: /Prod
           PriceClass: PriceClass_100
