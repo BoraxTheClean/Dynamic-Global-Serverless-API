@@ -117,10 +117,17 @@ API:
 
 # What to change when forking?
 
-You'll want to update (references)[https://github.com/BoraxTheClean/header-api/blob/a5445434c624bc2e39095d2647006fa6d2e91ab6/template.yaml#L29-L46] to `headers.owen.dev` to point to your own domain, or just not use a custom domain at all.
+You'll want to update [references](https://github.com/BoraxTheClean/header-api/blob/a5445434c624bc2e39095d2647006fa6d2e91ab6/template.yaml#L29-L46) to `headers.owen.dev` to point to your own domain, or just not use a custom domain at all.
 
-You'll also need to remove references to my (personal site)[https://github.com/BoraxTheClean/header-api/blob/a5445434c624bc2e39095d2647006fa6d2e91ab6/src/handler.py#L6-L7] in the Lambda source code.
+You'll also need to remove references to my [personal site](https://github.com/BoraxTheClean/header-api/blob/a5445434c624bc2e39095d2647006fa6d2e91ab6/src/handler.py#L6-L7) in the Lambda source code.
+
+Update the deployment code to [remove references](https://github.com/BoraxTheClean/header-api/blob/3c1ca12e1eb4fa4e08e92bed0b9d8cfdaf7dee6a/script.sh#L5-L6) to the S3 Bucket in my account.
+# Enhancements
+
+This project can be enhanced by:
+- Use the new Cloudformation cache support, which does not have cloudformation support at this time.
+- Add DNS support for APIGateway, update the deployment code to allow for deploying to each AWS region.
 
 # Where to find me?
 
-(Check out my links here!)[https://owen.dev]
+[Check out my links here!](https://owen.dev)
