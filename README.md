@@ -1,5 +1,7 @@
 # Dynamic Global Serverless API
 
+![Architecture Diagram](./GlobalDynamicEndpoint.png)
+
 Full-stack implementation of a dynamic global serverless API hosted on AWS Lambda.
 
 Check it out at https://headers.owen.dev
